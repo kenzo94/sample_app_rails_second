@@ -10,6 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * 1. require_tree -> alle css files in diesen stylesheet ordner werden included
+ * 2. require_self -> diese Datei wird im ladeprozess selbst geladen 
  *= require_tree .
  *= require_self
  */
