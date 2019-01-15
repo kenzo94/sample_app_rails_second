@@ -1,0 +1,18 @@
+<%# partial %>
+
+<%# user.errors.any? gibt true wenn es im Vorgang einen User zu erstellen errors gab %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <!-- user.error.count gibt die anzahl an errors zurück -->
+      <!-- helper.pluralize(2, "error")
+           => "2 errors" -->
+      The form contains <%= pluralize(@user.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

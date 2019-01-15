@@ -4,6 +4,7 @@
     <!-- full_title methode in der application_helper.rb file -->
     <title><%= full_title(yield(:title)) %></title>
     <%# Das sind Partials %>
+    <%# dieser ausdruck wird bearbeitet und in den Template eingefügt  %>
     <%= render 'layouts/default_header' %>
     <%= render 'layouts/shim' %>
   </head>
@@ -13,8 +14,15 @@
     <%= render 'layouts/header' %>
 
       <div class="container">
+        <%# alert ob ein User erstellt wurde oder nicht %>
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+
         <%= yield %>
         <%= render 'layouts/footer' %>
+        <%# debug wenn wir in der entwicklung sind %>
+        <%= debug(params) if Rails.env.development? %>
       </div>
     </body>
 

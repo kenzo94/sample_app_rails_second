@@ -1,4 +1,34 @@
-<% provide(:title, "Sign Up") %>
-
+<% provide(:title, 'Sign Up') %>
 <h1>Sign up</h1>
-<p>This will be a signup page for new users.</p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%# form_for is eine helper methode die automatisch im browser eine Form für uns k %>
+    <%# @user weiß das er von klasse User ist da alle Ruby Objekte ihre klasse wissen
+    mit @user.class %>
+
+    <%= form_for(@user, url: signup_path) do |f| %>
+    <%# shared/error_messages ist ein partial, shared is eine convention von Rails
+    für partials die von verschiedenen views benutzt werden %>
+      <%= render 'shared/error_messages' %>
+
+      <%# z.B. <label for="user_name">Name</label>
+      <input id="user_name" name="user[name]" type="text" />   %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%# form-control hat eine bedeutung für bootstrap %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
