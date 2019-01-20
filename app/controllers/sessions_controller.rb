@@ -10,6 +10,16 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #einloggen und redirect zum show page
       log_in user
+      #       if boolean?
+      #         var = foo
+      #       else
+      #         var = bar
+      #       end
+      #     becomes
+      #
+      #  var = boolean? ? foo : bar
+      params[:session][:remember_me] == '1'  ? remember(user) : forget(user)
+      remember user
       redirect_to user_url(user)
     else
       #show error message
@@ -20,7 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
