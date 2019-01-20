@@ -2,6 +2,7 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
+#diese Methode wird bei jedem Test immer als erstes aus geführt
   def setup
       @base_title = "Ruby on Rails Tutorial Sample App"
     end
