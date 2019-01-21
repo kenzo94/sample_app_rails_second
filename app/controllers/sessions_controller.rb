@@ -19,8 +19,7 @@ class SessionsController < ApplicationController
       #
       #  var = boolean? ? foo : bar
       params[:session][:remember_me] == '1'  ? remember(user) : forget(user)
-
-      redirect_to user_url(user)
+      redirect_back_or user
     else
       #show error message
       flash.now[:danger] = 'Invalid email/password combination'
