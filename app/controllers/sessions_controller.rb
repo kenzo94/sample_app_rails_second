@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     #(true && true) == true wenn ein User mit der Email in der Datenbank gefunden wird
     if user && user.authenticate(params[:session][:password])
       #einloggen und redirect zum show page
-      log_in user
       #       if boolean?
       #         var = foo
       #       else
@@ -18,13 +17,21 @@ class SessionsController < ApplicationController
       #     becomes
       #
       #  var = boolean? ? foo : bar
-      params[:session][:remember_me] == '1'  ? remember(user) : forget(user)
-      redirect_back_or user
+      if user.activated?
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_back_or user
+      else
+        message  = "Account not activated. "
+        message += "Check your email for the activation link."
+        flash[:warning] = message
+        redirect_to root_url
+      end
+
     else
       #show error message
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
-
     end
   end
 

@@ -19,4 +19,5 @@ Rails.application.routes.draw do
    # User bekommt die REST (GET,POST,PATCH,DELETE) Methoden und bekommt somit die
    # URLS 	/users , /users/1 etc.
   resources :users
+  resources :account_activations, only: [:edit]
 end
