@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       #
       #  var = boolean? ? foo : bar
       params[:session][:remember_me] == '1'  ? remember(user) : forget(user)
-      remember user
+
       redirect_to user_url(user)
     else
       #show error message
@@ -27,6 +27,10 @@ class SessionsController < ApplicationController
       render 'new'
 
     end
+  end
+
+  def edit
+   @user = User.find(params[:id])
   end
 
   def destroy
