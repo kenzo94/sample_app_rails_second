@@ -7,7 +7,7 @@ mit @user.class %>
 <%# shared/error_messages ist ein partial, shared is eine convention von Rails
 für partials die von verschiedenen views benutzt werden %>
 
-  <%= render 'shared/error_messages', object: @user %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <%# z.B. <label for="user_name">Name</label>
   <input id="user_name" name="user[name]" type="text" />   %>

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       #debugger #byebug wird auf der Commandline aufgerufen wenn wir die URL user/1 aufgerufen
                 #damit können wir dann mit der Seite interagieren und bugfixen
+      @microposts = @user.microposts.paginate(page: params[:page])
     end
 
   def new
@@ -68,14 +69,6 @@ end
 
   # Before filters von ganz oben
 
-# Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
-  end
 
   # Confirms the correct user.
    def correct_user
